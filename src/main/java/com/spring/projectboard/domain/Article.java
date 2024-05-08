@@ -2,6 +2,7 @@ package com.spring.projectboard.domain;
 
 import java.time.LocalDateTime;
 
+// 게시글
 public class Article {
     private Long id;
     private String title;
