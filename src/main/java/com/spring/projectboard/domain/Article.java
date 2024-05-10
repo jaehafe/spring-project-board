@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy"),
 })
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Article {
 
@@ -67,6 +69,8 @@ public class Article {
         this.hashtag = hashtag;
     }
 
+    protected Article() {}
+
     public static Article of(String title, String content, String hashtag) {
         return new Article(title, content, hashtag);
     }
@@ -81,9 +85,5 @@ public class Article {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    private Article() {
-
     }
 }

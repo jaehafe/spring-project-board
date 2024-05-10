@@ -49,7 +49,7 @@ spring:
   config.activate.on-profile: heroku
   datasource:
     #    url: ${JAWSDB_URL}
-    url: jdbc:h2:mem:board;mode-mysql
+    url: jdbc:h2:mem:board;mode=mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa.hibernate.ddl-auto: create
   sql.init.mode: always
