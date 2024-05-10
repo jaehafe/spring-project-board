@@ -10,7 +10,9 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString
@@ -37,6 +39,11 @@ public class Article {
 
     @Setter
     private String hashtag; // 해시태그
+
+    @ToString.Exclude
+    @OrderBy("id")
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final Set<ArticleComment> articleComments = new HashSet<>();
 
     @CreatedDate
     @Column(nullable = false)
